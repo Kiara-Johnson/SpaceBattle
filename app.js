@@ -9,9 +9,9 @@ const myShip = {
       //damage accrued
       alienShips.hull = alienShips.hull - myShip.firepower;
       console.log(`Enemy ship has received ${myShip.firepower} damage.`);
-       if (alienShips.hull <= 0) {
-      console.log("Ship destroyed");
-    }
+      if (alienShips.hull <= 0) {
+        console.log("Ship destroyed");
+      }
     } else {
       console.log("Attack missed");
     }
@@ -20,7 +20,7 @@ const myShip = {
 };
 
 class AlienShip {
-  constructor(hull, firepower, accuracy, hullLeft) {
+  constructor(hull, firepower, accuracy) {
     this.hull = hull;
     this.firepower = firepower;
     this.accuracy = accuracy;
@@ -36,9 +36,9 @@ class AlienShip {
       myShip.hull = myShip.hull - alienShips.firepower;
       console.log(`USS Medusa has received ${this.firepower} damage.`);
       if (myShip.hull <= 0) {
-      console.log("Ship destroyed");
-    }
-    }  else {
+        console.log("Ship destroyed");
+      }
+    } else {
       console.log("Enemy attack missed");
     }
     console.log(Math.random(), this.accuracy, myShip.hull);
@@ -49,11 +49,18 @@ let alienShips = new AlienShip();
 
 console.log(alienShips);
 console.log(myShip);
-console.log(alienShips.attack(myShip));
-console.log(myShip.attack(alienShips));
 
-// const game = {
-//     start: document.querySelector('button'),
 
-//     button.addEventListener('click', (event)=>{
-// }
+
+const start = () => {
+  alert("Prepare for battle!");  
+  //have my ship attack the alien ship
+  console.log(myShip.attack(alienShips));
+  //if alien ship not destroyed have alien ship attack
+  if (alienShips.hull >= 0) {
+    console.log(alienShips.attack(myShip));
+  }
+};
+
+const button = document.querySelector("button");
+button.addEventListener("click", start);
